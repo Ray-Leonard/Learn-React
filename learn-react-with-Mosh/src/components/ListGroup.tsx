@@ -1,12 +1,28 @@
 function ListGroup() {
+  const items = [
+    "dog",
+    "pig",
+    "cat",
+    "elephant",
+    "duck",
+    "banana",
+    "pinapple",
+    "sea gull",
+    "list-group-item",
+  ];
+
   return (
-    <ul className="list-group">
-      <li className="list-group-item">An item</li>
-      <li className="list-group-item">A second item</li>
-      <li className="list-group-item">A third item</li>
-      <li className="list-group-item">A fourth item</li>
-      <li className="list-group-item">And a fifth one</li>
-    </ul>
+    <>
+      <h1>My List</h1>
+      <ul className="list-group">
+        {items.map((item) => (
+          <li key={item} className="list-group-item">
+            {item}
+          </li>
+        ))}
+        ;
+      </ul>
+    </>
   );
 }
 
