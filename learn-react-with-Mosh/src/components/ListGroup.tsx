@@ -1,3 +1,5 @@
+import { MouseEvent } from "react";
+
 function ListGroup() {
   let items = [
     "dog",
@@ -8,11 +10,11 @@ function ListGroup() {
     "banana",
     "pinapple",
     "sea gull",
-    "list-group-item",
   ];
 
-  items = [];
+  // items = [];
 
+  /** Conditional Rendering */
   // 1. put the conditional expression in a variable
   const emptyListMessageVar =
     items.length === 0 ? <p>No item found (emptyListMessageVar).</p> : null;
@@ -22,6 +24,12 @@ function ListGroup() {
     return items.length === 0 ? (
       <p>No item found (emptyListMessageFunc).</p>
     ) : null;
+  };
+
+  /** Event Handler */
+  const handleClick = (event: MouseEvent, item: string) => {
+    console.log(event);
+    console.log(item);
   };
 
   return (
@@ -34,7 +42,11 @@ function ListGroup() {
 
       <ul className="list-group">
         {items.map((item) => (
-          <li key={item} className="list-group-item">
+          <li
+            key={item}
+            className="list-group-item"
+            onClick={(event) => handleClick(event, item)}
+          >
             {item}
           </li>
         ))}
