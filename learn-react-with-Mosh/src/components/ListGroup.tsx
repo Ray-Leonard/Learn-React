@@ -1,4 +1,5 @@
 import { MouseEvent } from "react";
+import { useState } from "react";
 
 function ListGroup() {
   let items = [
@@ -12,7 +13,8 @@ function ListGroup() {
     "sea gull",
   ];
 
-  // items = [];
+  // using state hook (we use const here, array is immutable, but the content inside is mutable)
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   /** Conditional Rendering */
   // 1. put the conditional expression in a variable
@@ -38,14 +40,20 @@ function ListGroup() {
 
       {emptyListMessageVar}
       {emptyListMessageFunc()}
-      {items.length === 0 && <p>No item found (logical AND expression)</p>}
+      {
+        // this one gets used the most
+        items.length === 0 && <p>No item found (logical AND expression)</p>
+      }
 
       <ul className="list-group">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li
             key={item}
-            className="list-group-item"
-            onClick={(event) => handleClick(event, item)}
+            className={
+              "list-group-item" + (index === selectedIndex ? " active" : "")
+            }
+            // onClick={(event) => handleClick(event, item)}
+            onClick={() => setSelectedIndex(index)}
           >
             {item}
           </li>
